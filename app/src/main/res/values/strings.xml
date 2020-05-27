@@ -1,0 +1,75 @@
+<resources>
+    <string name="app_name">Fleet Tracker</string>
+
+    // Control Names
+    <string name="button_login">Sign in</string>
+    <string name="title_activity_dashboard">Dashboard</string>
+
+    <string name="menu_home_title">Home</string>
+    <string name="menu_booking_title">Booking</string>
+    <string name="menu_report_title">Report</string>
+    <string name="menu_alert_title">Alert</string>
+
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="label_fleet">Fleet</string>
+    <string name="label_healthy">Healthy: </string>
+    <string name="label_Faulty">Faulty: </string>
+    <string name="label_online">Online: </string>
+    <string name="label_offline">Offline: </string>
+    <string name="label_search_letters">Search vehicle (Min 3 letters)</string>
+    <string name="label_available_vehicles">Available Vehicle(s)</string>
+    <string name="label_view_all">View all</string>
+    <string name="label_name">Name</string>
+    <string name="label_distance">Distance</string>
+    <string name="label_last_seen">Last seen</string>
+    <string name="dash">-</string>
+    <string name="vehicle_data_not_available">Vehicle(s) not available.</string>
+    <string name="label_trip">Trip: %1$s</string>
+    <string name="ride_details">Ride Details (%1$s)</string>
+    <string name="label_search_trip_speed">Speed limit</string>
+    <string name="trip_data_not_available">Trip(s) not available.</string>
+    <string name="label_Depart">Depart</string>
+    <string name="label_arrive">Arrive</string>
+    <string name="label_miles">Distance</string>
+    <string name="label_fuels">Fuel %</string>
+    <string name="label_trip_safety_analysis">Trip Safety Analysis</string>
+    <string name="title_activity_notifications">Notifications</string>
+    <string name="label_date_time"><![CDATA[Date & Time]]></string>
+    <string name="label_speed">Speed</string>
+    <string name="label_speed_limit">Speed limit</string>
+
+    <string name="tab_events">Events</string>
+    <string name="tab_fault">Faults</string>
+    <string name="tab_geofence">Geofence</string>
+    <string name="menu_filter_title">Filter</string>
+    <string name="label_description">Description</string>
+    <string name="label_date">Date</string>
+    <string name="label_action">Action</string>
+
+    <string name="menu_notification_title">Notifications</string>
+    <string name="label_close">close</string>
+    <string name="label_reports">Reports</string>
+    <string name="lbl_utilization_report">Utilization Report</string>
+    <string name="lbl_safety_report">Safety Report</string>
+    <string name="lbl_health_report">Health Report</string>
+    <string name="label_bookings">Bookings</string>
+    <string name="lbl_my_bookings">My Bookings</string>
+    <string name="lbl_booking_requests">Booking Requests</string>
+    <string name="lbl_booking_summary">Booking Summary</string>
+    <string name="lbl_vehicle_occupancy">Vehicle Occupancy</string>
+
+    <string name="label_select_fleet">Select Fleet</string>
+    <string name="label_start_date">Start date</string>
+    <string name="label_end_date">End date</string>
+    <string name="Alerts_data_not_available">Alert(s) not available.</string>
+    <string name="label_notification">Notifications</string>
+    <string name="label_search_alerts">Search alert(s) (Min 3 letters)</string>
+</resources>

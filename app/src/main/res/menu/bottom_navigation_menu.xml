@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <item
+        android:id="@+id/action_home"
+        android:enabled="true"
+        android:icon="@drawable/home"
+        android:title="@string/menu_home_title"
+        app:showAsAction="ifRoom"
+        />
+
+    <item
+        android:id="@+id/action_reports"
+        android:enabled="true"
+        android:icon="@drawable/booking"
+        android:title="@string/menu_report_title"
+        app:showAsAction="ifRoom"
+        />
+    <item
+        android:id="@+id/action_booking"
+        android:enabled="true"
+        android:icon="@drawable/booking"
+        android:title="@string/menu_booking_title"
+        app:showAsAction="ifRoom"
+        />
+
+    <item
+        android:id="@+id/action_notifications"
+        android:enabled="true"
+        android:icon="@drawable/booking"
+        android:title="@string/menu_notification_title"
+        app:showAsAction="ifRoom"
+        />
+</menu>
