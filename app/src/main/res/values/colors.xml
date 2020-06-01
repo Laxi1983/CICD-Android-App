@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#E6000000</color>
+
+    <color name="app_color">#3497FD</color>
+    <color name="app_bg_color">#EAEAEF</color>
+    <color name="black">#E6000000</color>
+    <color name="dashboard_background">#F5F6F7</color>
+    <color name="white">#FFFFFF</color>
+    <color name="grey">#A7A7A7</color>
+    <color name="space_grey">#fbfbfd</color>
+    <color name="dark_grey">#959DAD</color>
+    <color name="color_fiord">#454F63</color>
+    <color name="color_sunglo">#F46F6F</color>
+    <color name="color_puerto_rico">#3DD3B7</color>
+    <color name="color_white_lilac">#F7F7FA</color>
+    <color name="color_athens_gray">#F0F0F4</color>
+    <color name="color_lynch">#78849E</color>
+    <color name="color_zircon">#F4F4F6FD</color>
+    <color name="color_scarlet">#FF2F19</color>
+    <color name="colorLineDivider">#F2F5F7</color>
+    <color name="colorBattlerShipGray">#808488</color>
+    <color name="colorCardTiles">@android:color/white</color>
+    <color name="colorApprovedRidesCard">#caece8</color>
+    <color name="colorPendingRidesCard">#cee0f6</color>
+    <color name="colorCancelledRidesCard">#f7efd3</color>
+    <color name="colorRejectedRidesCard">#f7dcde</color>
+</resources>
