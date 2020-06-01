@@ -25,7 +25,8 @@
             android:contentDescription="@string/label_close"
             android:padding="@dimen/dp_10"
             android:src="@drawable/ic_back"
-            android:visibility="visible" />
+            android:visibility="gone" />
+
 
         <TextView
             android:id="@+id/txtTitle"

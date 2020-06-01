@@ -26,7 +26,8 @@
         <item name="android:gravity">center</item>
     </style>
 
-    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme.NoActionBar"
+        parent="Theme.AppCompat.Light.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:navigationBarColor"
@@ -54,6 +55,22 @@
         parent="Widget.AppCompat.Spinner.Underlined">
         <item name="android:background">@drawable/spinner_background</item>
         <item name="strokeColor">@color/color_fiord</item>
+    </style>
+
+    <style name="AppActionBarTheme"
+        parent="@android:style/Theme.Holo.Light">
+        <item name="android:actionBarStyle">@style/myTheme.ActionBar</item>
+    </style>
+
+    <style name="myTheme.ActionBar"
+        parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:background">@color/white</item>
+        <item name="android:titleTextStyle">@style/myTheme.ActionBar.Text</item>
+    </style>
+
+    <style name="myTheme.ActionBar.Text"
+        parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/color_fiord</item>
     </style>
 
 </resources>

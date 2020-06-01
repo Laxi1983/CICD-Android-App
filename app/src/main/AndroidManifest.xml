@@ -29,6 +29,13 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
 
+
+        <activity android:name=".activity.booking.BookingDetailsActivity" />
+        <!-- <activity -->
+        <!-- android:name=".activity.notifications.NotificationsActivity" -->
+        <!-- android:label="@string/title_activity_notifications" -->
+        <!-- android:theme="@style/AppTheme.NoActionBar"></activity> -->
+
         <activity android:name=".activity.booking.BookingSummaryActivity" />
         <activity android:name=".activity.booking.VehicleOccupancyActivity" />
         <activity android:name=".activity.booking.BookingRequestsActivity" />

@@ -10,8 +10,7 @@
     <io.github.rokarpov.backdrop.BackdropBackLayer
         android:id="@+id/rootLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:context=".MainActivity">
+        android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -21,16 +20,6 @@
             app:layout_childType="header"
             app:titleTextColor="@color/color_fiord" />
 
-        <com.google.android.material.navigation.NavigationView
-            android:id="@+id/main__navigation_back_layer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            app:itemTextColor="@android:color/white"
-            app:layout_childType="content"
-            app:layout_hideHeaderOnReveal="false"
-            app:layout_minRevealedFrontViewHeight="48dp" />
-
         <com.undp.fleettracker.activity.notifications.FilterView
             android:id="@+id/nav_filter_view"
             android:layout_width="match_parent"
@@ -38,7 +27,7 @@
             app:layout_anchor="@+id/rootLayout"
             app:layout_anchorGravity="center"
             app:layout_childType="content"
-            app:layout_hideHeaderOnReveal="true"
+            app:layout_hideHeaderOnReveal="false"
             app:layout_minRevealedFrontViewHeight="@dimen/subheader_height" />
 
     </io.github.rokarpov.backdrop.BackdropBackLayer>
@@ -46,7 +35,7 @@
     <io.github.rokarpov.backdrop.BackdropFrontLayer
         android:id="@+id/main_front_layer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/app_bg_color"
         app:layout_behavior="@string/backdrop_front_layer_behavior">
 

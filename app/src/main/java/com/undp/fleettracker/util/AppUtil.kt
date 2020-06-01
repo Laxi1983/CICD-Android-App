@@ -7,6 +7,7 @@ import com.auth0.android.jwt.JWT
 import com.kaopiz.kprogresshud.KProgressHUD
 import com.undp.fleettracker.R
 import com.undp.fleettracker.constants.APP_DATE_FORMAT
+import com.undp.fleettracker.constants.BOOKING_DATE_FORMAT
 import com.undp.fleettracker.constants.REQUEST_DATE_FORMAT
 import com.undp.fleettracker.models.fleet.FleetModel
 import com.undp.fleettracker.models.vehicle.VehicleInfo
@@ -83,6 +84,7 @@ object AppUtil {
         }
     }
 
+
     fun getFleetList(fleetModels: ArrayList<FleetModel>): ArrayList<String> {
         val fleets: ArrayList<String> = ArrayList()
         if (null != fleetModels && fleetModels.size > 0) {
@@ -130,5 +132,18 @@ object AppUtil {
 
         dpd.datePicker.maxDate = Calendar.getInstance().timeInMillis
         dpd.show()
+    }
+
+    fun convertEpochSecondsToTimeString(epochSeconds:Int):String{
+        var dateFormat:String = ""
+        try {
+            var epochMillis:Long = (epochSeconds * 1000).toLong()
+            var date:Date = Date(epochMillis)
+            dateFormat = SimpleDateFormat(BOOKING_DATE_FORMAT).format(date)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return dateFormat
+
     }
 }

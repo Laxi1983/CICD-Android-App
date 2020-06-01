@@ -45,11 +45,10 @@ class NotificationsActivity : BaseActivity() {
         toolbar.title = "Notification"
         toolbar.inflateMenu(R.menu.menu_navigation)
         filterView = findViewById(R.id.nav_filter_view)
-
         initBackdropController(toolbar)
         initBaseActivityViews()
         initPageViewer()
-        getFleetDetails()
+//        getFleetDetails()
     }
 
     private fun initPageViewer() {
@@ -97,6 +96,7 @@ class NotificationsActivity : BaseActivity() {
             concealedTitleId = R.string.label_notification
             concealedNavigationIconId = R.drawable.ic_back
             revealedNavigationIconId = R.drawable.ic_back
+
         }
 
 
@@ -115,9 +115,15 @@ class NotificationsActivity : BaseActivity() {
             }
 
             override fun fleetChange() {
+                if (null != sectionsPagerAdapter) {
+                    sectionsPagerAdapter.clearNotificationData(selectedIndex)
+                }
             }
 
             override fun vehicleChange(vehicleInfo: VehicleInfo) {
+                if (null != sectionsPagerAdapter) {
+                    sectionsPagerAdapter.clearNotificationData(selectedIndex)
+                }
                 filterView.mVehicleInfo = vehicleInfo
                 getUpdatedNotificationsList()
             }
@@ -150,9 +156,9 @@ class NotificationsActivity : BaseActivity() {
             if (selectedIndex == 0) {
                 notificationRequestModel.alertType = 4
             } else if (selectedIndex == 1) {
-                notificationRequestModel.alertType = 2
-            } else if (selectedIndex == 2) {
                 notificationRequestModel.alertType = 3
+            } else if (selectedIndex == 2) {
+                notificationRequestModel.alertType = 2
             }
 
         }

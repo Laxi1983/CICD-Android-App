@@ -11,10 +11,10 @@ import com.undp.fleettracker.models.notifications.NotificationModel
 
 class NotificationsViewAdapter(
     private val context: Context,
-    private var notificationAlerts: ArrayList<NotificationModel>
+    private var notificationAlerts: List<NotificationModel>,
+    private var mOnAcknowledgeClickListener: OnAcknowledgeClickListener
 ) :
     RecyclerView.Adapter<NotificationsViewAdapter.NotificationViewHolder>() {
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotificationViewHolder {
         val view =
@@ -31,20 +31,36 @@ class NotificationsViewAdapter(
         if (null != notifications) {
             holder.txtDescription.text = notifications.description
             holder.txtDate.text = notifications.date!!
+            holder.txtAcknowledge.setOnClickListener(object : View.OnClickListener {
+                override fun onClick(v: View?) {
+                    if (null != mOnAcknowledgeClickListener) {
+                        notifications.let {
+                            mOnAcknowledgeClickListener.onAcknowledgeClick(
+                                it
+                            )
+                        }
+                        notifyDataSetChanged()
+                    }
+                }
+            })
         }
     }
 
-    fun updateDataset(notificationList: ArrayList<NotificationModel>) {
-        notificationAlerts.clear()
-        notificationAlerts.addAll(notificationList)
-        notifyDataSetChanged()
+//    fun setOnAcknowledgeClickListener(onAcknowledgeClickListener: OnAcknowledgeClickListener) {
+//        mOnAcknowledgeClickListener = onAcknowledgeClickListener
+//    }
+
+    interface OnAcknowledgeClickListener {
+        fun onAcknowledgeClick(alert: NotificationModel)
     }
 
     class NotificationViewHolder(view: View) :
         androidx.recyclerview.widget.RecyclerView.ViewHolder(view) {
-        val txtDescription = view.findViewById<AppCompatTextView>(R.id.txtDescription)
-        val txtDate = view.findViewById<AppCompatTextView>(R.id.txtDate)
-        val txtAcknowledge = view.findViewById<AppCompatTextView>(R.id.txtAcknowledge)
+        val txtDescription: AppCompatTextView =
+            view.findViewById(R.id.txtDescription)
+        val txtDate: AppCompatTextView = view.findViewById(R.id.txtDate)
+        val txtAcknowledge: AppCompatTextView =
+            view.findViewById(R.id.txtAcknowledge)
 
     }
 }

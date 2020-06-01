@@ -50,3 +50,4 @@ const val DELETE_ROUTE = "api/route/deleteRoute"
 
 //Notifications/Alerts
 const val GET_GEOFENCE_ALERTS = "/api/geofence/alerts"
+const val NOTIFICATION_ACKNOWLEDGE = "/api/geofence/acknowledge"

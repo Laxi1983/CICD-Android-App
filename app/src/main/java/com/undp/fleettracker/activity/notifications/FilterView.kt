@@ -145,18 +145,24 @@ class FilterView : RelativeLayout, View.OnClickListener {
                 position: Int,
                 id: Long
             ) {
-                if (null != parent) {
-                    val data = parent.selectedItem
-                    if (null != fleetList) {
-                        for (fleetModel in fleetList) {
-                            if (data === fleetModel.FleetName) {
-                                fleetId = fleetModel.FleetId
-//                                getVehicleListForFleet(fleetId, tenantId)
-                                vehicleManager.getVehicleListForFleet(fleetId, TENANT_ID)
+                try {
+                    if (null != parent) {
+                        val data = parent.selectedItem
+                        if (null != fleetList) {
+                            for (fleetModel in fleetList) {
+                                if (data === fleetModel.FleetName) {
+                                    fleetId = fleetModel.FleetId
+                                    //                                getVehicleListForFleet(fleetId, tenantId)
+                                    vehicleManager.getVehicleListForFleet(fleetId, TENANT_ID)
+                                    break
+                                }
                             }
+                            onChangeListeners?.fleetChange()
                         }
+                        Log.d(TAG, "Selected Fleet $data")
                     }
-                    Log.d(TAG, "Selected Fleet $data")
+                } catch (e: Exception) {
+                    e.printStackTrace()
                 }
             }
         }
@@ -190,25 +196,29 @@ class FilterView : RelativeLayout, View.OnClickListener {
                 position: Int,
                 id: Long
             ) {
-                if (null != parent) {
-                    val data = parent.selectedItem
+                try {
+                    if (null != parent) {
+                        val data = parent.selectedItem
 
-                    if (null != vehicleDetailsResponse.data) {
-                        val vehicleDetails = vehicleDetailsResponse.data
-                        for (vehicleInfo in vehicleDetails.VehicleInfo) {
-                            if (data === vehicleInfo.VehicleName) {
-                                mVehicleInfo = vehicleInfo
-                                startDateCalender.timeInMillis =
-                                    vehicleInfo.LastConnectedTimeEpoch * 1000L
-                                endDateCalender.timeInMillis =
-                                    vehicleInfo.LastConnectedTimeEpoch * 1000L
-                                txtStartDate.text = AppUtil.convertToAppDate(startDateCalender)
-                                txtEndDate.text = AppUtil.convertToAppDate(endDateCalender)
-                                onChangeListeners?.vehicleChange(vehicleInfo)
+                        if (null != vehicleDetailsResponse.data) {
+                            val vehicleDetails = vehicleDetailsResponse.data
+                            for (vehicleInfo in vehicleDetails.VehicleInfo) {
+                                if (data === vehicleInfo.VehicleName) {
+                                    mVehicleInfo = vehicleInfo
+                                    startDateCalender.timeInMillis =
+                                        vehicleInfo.LastConnectedTimeEpoch * 1000L
+                                    endDateCalender.timeInMillis =
+                                        vehicleInfo.LastConnectedTimeEpoch * 1000L
+                                    txtStartDate.text = AppUtil.convertToAppDate(startDateCalender)
+                                    txtEndDate.text = AppUtil.convertToAppDate(endDateCalender)
+                                    onChangeListeners?.vehicleChange(vehicleInfo)
+                                }
                             }
                         }
+                        Log.d(TAG, "Selected Fleet $data")
                     }
-                    Log.d(TAG, "Selected Fleet $data")
+                } catch (e: Exception) {
+                    e.printStackTrace()
                 }
             }
 

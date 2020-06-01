@@ -30,4 +30,11 @@ class NotificationModel {
 
     @SerializedName("VehicleName")
     var vehicleName: String? = ""
+
+
+    override fun toString(): String {
+        return "NotificationModel(alertEpochTime=$alertEpochTime, alertId=$alertId, date=$date, description=$description, geofenceName=$geofenceName, severity=$severity, type=$type, updatedAt=$updatedAt, vehicleName=$vehicleName)"
+    }
+
+
 }

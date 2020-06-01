@@ -3,25 +3,19 @@ package com.undp.fleettracker.viewmodels.notification
 import android.util.Log
 import androidx.lifecycle.*
 import com.undp.fleettracker.constants.BEARER_TOKEN
+import com.undp.fleettracker.constants.TENANT_ID
 import com.undp.fleettracker.di.module.NetworkModule
+import com.undp.fleettracker.models.notifications.NotificationAck
 import com.undp.fleettracker.models.notifications.NotificationRequestModel
 import com.undp.fleettracker.models.notifications.NotificationsResponseModel
 import com.undp.fleettracker.network.api.notifications.NotificationsAPI
 import io.reactivex.schedulers.Schedulers
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class NotificationFragmentViewModel : ViewModel() {
-
-    private val _index = MutableLiveData<Int>()
-    val text: LiveData<String> = Transformations.map(_index) {
-        "Hello world from section: $it"
-    }
-
-    fun setIndex(index: Int) {
-        _index.value = index
-    }
 
     private val notifications = MediatorLiveData<NotificationsResponseModel>()
 
@@ -54,7 +48,7 @@ class NotificationFragmentViewModel : ViewModel() {
         service.getAlertsListUpdated(BEARER_TOKEN, notificationRequestModel)
             .enqueue(object : Callback<NotificationsResponseModel> {
                 override fun onFailure(call: Call<NotificationsResponseModel>, t: Throwable) {
-
+                    notifications.postValue(NotificationsResponseModel())
                 }
 
                 override fun onResponse(
@@ -64,6 +58,31 @@ class NotificationFragmentViewModel : ViewModel() {
                     val data = response.body()!!
                     Log.d("TAG", "Response Alerts: $data")
                     notifications.postValue(response.body())
+                }
+            })
+
+    }
+
+    fun sendAcknowledgement(userId: Int, alertID: Int) {
+        Log.d("TAG", "Send alert acknowledgement")
+        val service = NetworkModule.provideRetrofitInstance().create(NotificationsAPI::class.java)
+        val notificationAck = NotificationAck()
+        notificationAck.tenantId = TENANT_ID
+        notificationAck.userId = userId
+        notificationAck.alertId = alertID
+        service.notificationAcknowledge(BEARER_TOKEN, notificationAck)
+            .enqueue(object : Callback<ResponseBody> {
+                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+//                    notifications.postValue(NotificationsResponseModel())
+                }
+
+                override fun onResponse(
+                    call: Call<ResponseBody>,
+                    response: Response<ResponseBody>
+                ) {
+                    val data = response.body()!!
+                    Log.d("TAG", "Response Alerts: $data")
+//                    notifications.postValue(response.body())
                 }
             })
 

@@ -147,6 +147,7 @@ class AuthActivity : AppCompatActivity(), AADCallBack {
     override fun onError(error: String) {
         AppUtil.hideProgress()
         Toast.makeText(this, error, Toast.LENGTH_LONG).show()
+        MSALADLoginUpdate.getInstance().init()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

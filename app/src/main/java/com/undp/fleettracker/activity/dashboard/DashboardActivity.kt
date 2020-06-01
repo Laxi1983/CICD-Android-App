@@ -153,7 +153,7 @@ class DashboardActivity : BaseActivity(), OnMapReadyCallback,
         edtSearch.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(editable: Editable?) {
                 searchText = editable.toString().trim()
-                if (searchText.length >= 3 || !searchText.isEmpty()) {
+                if (searchText.length >= 3 && searchText.isNotEmpty()) {
                     getVehicleListForFleet(fleetId, tenantId)
                 }
             }
@@ -235,12 +235,16 @@ class DashboardActivity : BaseActivity(), OnMapReadyCallback,
                     val data = response.body()
                     Log.d(TAG, "Response object: $data")
                     fleetDetailModel = response.body()!!
-                    fleetList.clear()
-                    fleetList.addAll(fleetDetailModel.data)
                     runOnUiThread {
                         adapter.clear()
-                        adapter.addAll(AppUtil.getFleetList(fleetDetailModel.data))
-                        adapter.notifyDataSetChanged()
+                        fleetList.clear()
+                        if (null != fleetDetailModel.data) {
+                            fleetList.addAll(fleetDetailModel.data)
+                            adapter.addAll(AppUtil.getFleetList(fleetDetailModel.data))
+                            adapter.notifyDataSetChanged()
+                        } else {
+
+                        }
                     }
                 }
             }

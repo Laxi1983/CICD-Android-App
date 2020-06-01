@@ -267,6 +267,7 @@ class TripDetailActivity : AppCompatActivity(), OnMapReadyCallback {
             txtErrorMessage.visibility = View.VISIBLE
             txtSpeed.visibility = View.GONE
             txtDateTime.visibility = View.GONE
+            googleMap.clear()
             lineChart.clear()
             lineChart.invalidate()
         }

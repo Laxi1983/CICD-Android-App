@@ -23,4 +23,8 @@
     <color name="colorLineDivider">#F2F5F7</color>
     <color name="colorBattlerShipGray">#808488</color>
     <color name="colorCardTiles">@android:color/white</color>
+    <color name="colorApprovedRidesCard">#caece8</color>
+    <color name="colorPendingRidesCard">#cee0f6</color>
+    <color name="colorCancelledRidesCard">#f7efd3</color>
+    <color name="colorRejectedRidesCard">#f7dcde</color>
 </resources>

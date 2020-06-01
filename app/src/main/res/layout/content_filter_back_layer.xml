@@ -73,7 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_10"
             android:layout_marginTop="@dimen/dp_20"
-            android:text="@string/label_select_fleet"
+            android:text="@string/label_select_vehicle"
             android:textColor="@color/dark_grey"
             android:textSize="@dimen/sp_12"
             app:layout_constraintEnd_toEndOf="parent"

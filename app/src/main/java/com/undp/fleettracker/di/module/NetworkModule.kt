@@ -26,4 +26,16 @@ object NetworkModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
+
+//    @Singleton
+//    @JvmStatic
+//    @Provides
+//    fun provideNonJsonRetrofitInstance(): Retrofit {
+//        return Retrofit.Builder()
+//            .baseUrl(BASE_URL)
+//            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+//            .build()
+//    }
+
+
 }

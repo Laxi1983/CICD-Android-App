@@ -21,15 +21,15 @@ private val TAB_TITLES = arrayOf(
 class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
     FragmentPagerAdapter(fm) {
 
-    val fragment1 = NotificationFragment.newInstance(
+    private val fragment1 = NotificationFragment.newInstance(
         0, NotificationRequestModel()
     )
 
-    val fragment2 = NotificationFragment.newInstance(
+    private val fragment2 = NotificationFragment.newInstance(
         2, NotificationRequestModel()
     )
 
-    val fragment3 = NotificationFragment.newInstance(
+    private val fragment3 = NotificationFragment.newInstance(
         3, NotificationRequestModel()
     )
 
@@ -60,6 +60,14 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
             0 -> fragment1.setNotificationModel(notificationRequestModel)
             1 -> fragment2.setNotificationModel(notificationRequestModel)
             2 -> fragment3.setNotificationModel(notificationRequestModel)
+        }
+    }
+
+    fun clearNotificationData(position: Int) {
+        when (position) {
+            0 -> fragment1.clearNotificationData()
+            1 -> fragment2.clearNotificationData()
+            2 -> fragment3.clearNotificationData()
         }
     }
 
