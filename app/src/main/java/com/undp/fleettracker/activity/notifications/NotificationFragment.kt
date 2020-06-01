@@ -105,7 +105,7 @@ class NotificationFragment : Fragment(), NotificationsViewAdapter.OnAcknowledgeC
         edtSearch.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(editable: Editable?) {
                 searchText = editable.toString().trim()
-                if (searchText.length >= 3 && searchText.isNotEmpty()) {
+                if (searchText.length >= 3 || searchText.isEmpty()) {
                     mNotificationRequestModel!!.searchKey = searchText
 //                    AppUtil.showProgress(mContext)
                     pageViewModel.getNotificationListUpdated(mNotificationRequestModel!!)

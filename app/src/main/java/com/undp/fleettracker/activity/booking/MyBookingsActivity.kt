@@ -57,7 +57,7 @@ class MyBookingsActivity : BaseActivity(),
         edtSearch.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(editable: Editable?) {
                 searchText = editable.toString().trim()
-                if (searchText.length >= 3 && searchText.isNotEmpty()) {
+                if (searchText.length >= 3 || searchText.isEmpty()) {
                     performSearchOperation(searchText)
                 }
             }
