@@ -8,7 +8,7 @@ import com.undp.fleettracker.models.fleet.FleetModel
  */
 const val AUTHORIZATION = "Authorization"
 var TENANT_ID = 0
-var userModel:UserModel? = null
+var userModel: UserModel? = null
 var BEARER_TOKEN = ""
 var fleetList = arrayListOf<FleetModel>()
 
@@ -18,6 +18,8 @@ const val START_TIME = "00:00:00"
 const val END_TIME = "23:59:59"
 const val SHARED_PREFERENCE_USER_NAME = "USER_NAME"
 const val BOOKING_DATE_FORMAT = "dd-MM-yyyy hh:mm:ss"
+val BOOKING_TYPE = arrayListOf("All", "Book Vehicle", "Self Drive", "Shuttle")
+val APPROVAL_STATUS = arrayListOf("All", "Pending", "Approved", "Rejected", "Cancelled")
 
 enum class ApprovalStatus {
     All,
@@ -48,7 +50,13 @@ enum class TripCategory(val dispName: String) {
 enum class HttpRequests {
     GET_TENANT_VEHICLE_FLEET_LIST,
     GET_USER_BOOKINGS,
-    GET_MAP_DIRECTIONS
+    GET_MAP_DIRECTIONS,
+    GET_VEHICLE_BOOKING_SUMMARY,
+    GET_SPECIFIC_BOOKING_STATUS,
+    GET_BOOKED_VEHICLE_COUNT,
+    GET_FLEET_VEHICLE,
+    GET_TODAY_SPECIFIC_BOOKING_STATUS,
+    VEHICLE_OCCUPANCY_SUMMARY
 }
 
 enum class RequestStatus {

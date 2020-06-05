@@ -180,6 +180,42 @@ class BookingsManager private constructor() {
         })
     }
 
+    fun getTodaysSpecificBookingStatus(
+        httpRequests: HttpRequests,
+        getBookingRequestModel: GetBookingRequestModel,
+        httpResponseCallback: HttpResponseCallback
+    ) {
+
+        val service = NetworkModule.provideRetrofitInstance().create(BookingAPI::class.java)
+
+        val call = service.getTodaysSpecificBookingStatus(BEARER_TOKEN, getBookingRequestModel)
+
+        call.enqueue(object : Callback<GetSpecificBookingStatusResponseModel> {
+            override fun onFailure(
+                call: Call<GetSpecificBookingStatusResponseModel>,
+                t: Throwable
+            ) {
+                Log.d(TAG, "getTodaysSpecificBookingStatus Response fail:" + t.message)
+                httpResponseCallback.onResponse(httpRequests, RequestStatus.ERROR, null, t)
+            }
+
+            override fun onResponse(
+                call: Call<GetSpecificBookingStatusResponseModel>,
+                response: Response<GetSpecificBookingStatusResponseModel>
+            ) {
+                Log.d(TAG, "getTodaysSpecificBookingStatus request success $response")
+                httpResponseCallback.onResponse(
+                    httpRequests,
+                    RequestStatus.SUCCESS,
+                    response,
+                    null
+                )
+
+            }
+
+        })
+    }
+
     fun getBookedVehicleCount(
         httpRequests: HttpRequests,
         getBookingRequestModel: GetBookingRequestModel,
@@ -207,6 +243,37 @@ class BookingsManager private constructor() {
                     null
                 )
             }
+        })
+    }
+
+    fun getVehicleOccupancySummary(
+        httpRequests: HttpRequests,
+        getBookingRequestModel: GetBookingRequestModel,
+        httpResponseCallback: HttpResponseCallback
+    ) {
+        val service = NetworkModule.provideRetrofitInstance().create(BookingAPI::class.java)
+
+        val call = service.getVehicleOccupancySummary(BEARER_TOKEN,getBookingRequestModel)
+
+        call.enqueue(object : Callback<VehicleOccupancySummaryResponseModel>{
+            override fun onFailure(call: Call<VehicleOccupancySummaryResponseModel>, t: Throwable) {
+                Log.d(TAG, "getVehicleOccupancySummary Response fail:" + t.message)
+                httpResponseCallback.onResponse(httpRequests, RequestStatus.ERROR, null, t)
+            }
+
+            override fun onResponse(
+                call: Call<VehicleOccupancySummaryResponseModel>,
+                response: Response<VehicleOccupancySummaryResponseModel>
+            ) {
+                Log.d(TAG, "getVehicleOccupancySummary request success $response")
+                httpResponseCallback.onResponse(
+                    httpRequests,
+                    RequestStatus.SUCCESS,
+                    response,
+                    null
+                )
+            }
+
         })
     }
 

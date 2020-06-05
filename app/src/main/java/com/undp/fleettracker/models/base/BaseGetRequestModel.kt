@@ -21,4 +21,9 @@ open class BaseGetRequestModel {
     @SerializedName("startRecordNo")
     var startRecordNo: Int? = 0
 
+    @SerializedName("StartDate")
+    var startDate: String? = ""
+
+    @SerializedName("EndDate")
+    var endDate: String? = ""
 }

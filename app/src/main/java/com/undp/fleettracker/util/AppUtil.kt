@@ -134,16 +134,30 @@ object AppUtil {
         dpd.show()
     }
 
-    fun convertEpochSecondsToTimeString(epochSeconds:Int):String{
-        var dateFormat:String = ""
+    fun convertEpochSecondsToTimeString(epochSeconds: Int): String {
+        var dateFormat: String = ""
         try {
-            var epochMillis:Long = (epochSeconds * 1000).toLong()
-            var date:Date = Date(epochMillis)
+            var epochMillis: Long = (epochSeconds * 1000).toLong()
+            var date: Date = Date(epochMillis)
             dateFormat = SimpleDateFormat(BOOKING_DATE_FORMAT).format(date)
         } catch (e: Exception) {
             e.printStackTrace()
         }
         return dateFormat
 
+    }
+
+    fun convertTimeStringToSimpleDate(timeString: String?):String {
+        var dateFormat: String = ""
+        try {
+            val format = SimpleDateFormat(
+                "yyyy-MM-dd'T'HH:mm:ss"
+            )
+            var date = format.parse(timeString)
+            dateFormat = SimpleDateFormat(BOOKING_DATE_FORMAT).format(date)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return dateFormat
     }
 }

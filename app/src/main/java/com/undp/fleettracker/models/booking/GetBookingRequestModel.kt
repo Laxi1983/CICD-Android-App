@@ -20,4 +20,7 @@ class GetBookingRequestModel : BaseGetRequestModel() {
     @SerializedName("isSearchTextLengthValid")
     var isSearchTextLengthValid: Boolean? = true
 
+    @SerializedName("vehicleId")
+    var vehicleId:Int = 0
+
 }

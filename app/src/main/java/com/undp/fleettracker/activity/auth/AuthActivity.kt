@@ -1,5 +1,7 @@
 package com.undp.fleettracker.activity.auth
 
+//import com.undp.fleettracker.activity.notifications.NotificationsActivity
+
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -12,10 +14,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.astritveliu.boom.Boom
 import com.microsoft.aad.adal.AuthenticationContext
+import com.microsoft.appcenter.AppCenter
+import com.microsoft.appcenter.analytics.Analytics
+import com.microsoft.appcenter.crashes.Crashes
 import com.undp.fleettracker.R
 import com.undp.fleettracker.activity.dashboard.DashboardActivity
-//import com.undp.fleettracker.activity.notifications.NotificationsActivity
 import com.undp.fleettracker.adapter.IntroductionAdapter
+import com.undp.fleettracker.constants.APP_CENTER_SECRET_KEY
 import com.undp.fleettracker.constants.BEARER_TOKEN
 import com.undp.fleettracker.constants.TENANT_ID
 import com.undp.fleettracker.constants.userModel
@@ -33,6 +38,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import javax.inject.Inject
+
 
 /**
  * @author: << sandip.mahajan >>
@@ -55,15 +61,18 @@ class AuthActivity : AppCompatActivity(), AADCallBack {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
+//        initCrashlytics()
         mContext = this
         mActivity = this
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
         initWidgets()
+
         authViewModel = ViewModelProviders.of(this, providerFactory).get(AuthViewModel::class.java)
 //        MSALADLogin(this, this, this).getTokenSilently()
         MSALADLoginUpdate.getInstance().setParameters(this, this, this)
         MSALADLoginUpdate.getInstance().init()
 //        redirectToNotifications()
+//        throw RuntimeException("This is a crash")
     }
 
     private fun initWidgets() {
@@ -155,4 +164,11 @@ class AuthActivity : AppCompatActivity(), AADCallBack {
         mAuthContext!!.onActivityResult(requestCode, resultCode, data);
     }
 
+
+    private fun initCrashlytics() {
+        AppCenter.start(
+            application, APP_CENTER_SECRET_KEY,
+            Analytics::class.java, Crashes::class.java
+        )
+    }
 }

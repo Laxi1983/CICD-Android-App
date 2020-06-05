@@ -411,6 +411,10 @@ class TripDetailActivity : AppCompatActivity(), OnMapReadyCallback {
         googleMap.addMarker(
             MarkerOptions().position(origin).title("Start point")
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.car))
+                .anchor(0.5f, 0.5f)
+        )
+        googleMap.addMarker(
+            MarkerOptions().position(origin).title("Start point 2")
         )
         googleMap.addMarker(MarkerOptions().position(dest).title("End point"))
 //        googleMap.addPolyline(polyLineOption)

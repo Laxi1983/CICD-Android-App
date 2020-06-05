@@ -45,4 +45,16 @@ interface BookingAPI {
     ): Call<GetBookedVehicleCountResponseModel>
 
 
+    @POST(GET_TODAYS_BOOKING_STATUS_COUNT)
+    fun getTodaysSpecificBookingStatus(
+        @Header(AUTHORIZATION) token: String,
+        @Body getBookingModel: GetBookingRequestModel
+    ): Call<GetSpecificBookingStatusResponseModel>
+
+    @POST(GET_BOOKING_SUMMARY)
+    fun getVehicleOccupancySummary(
+        @Header(AUTHORIZATION) token: String,
+        @Body getBookingModel: GetBookingRequestModel
+    ): Call<VehicleOccupancySummaryResponseModel>
+
 }

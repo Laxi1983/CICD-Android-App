@@ -61,18 +61,21 @@
 
         <TextView
             android:id="@+id/txtTitleType"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_10"
             android:text="@string/label_type"
+            app:layout_constraintEnd_toStartOf="@id/txtViewBookingType"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider1" />
 
         <TextView
             android:id="@+id/txtViewBookingType"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textAlignment="textEnd"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/txtTitleType"
             app:layout_constraintTop_toTopOf="@+id/txtTitleType" />
 
         <View
@@ -82,22 +85,25 @@
             android:layout_marginTop="@dimen/dp_10"
             android:background="@color/colorLineDivider"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtTitleType" />
+            app:layout_constraintTop_toBottomOf="@+id/txtViewBookingType" />
 
         <TextView
             android:id="@+id/txtTitleStartDate"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_10"
             android:text="@string/label_start_date"
+            app:layout_constraintEnd_toStartOf="@id/txtStartDate"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider2" />
 
         <TextView
             android:id="@+id/txtStartDate"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textAlignment="textEnd"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/txtTitleStartDate"
             app:layout_constraintTop_toTopOf="@+id/txtTitleStartDate" />
 
         <View
@@ -107,22 +113,25 @@
             android:layout_marginTop="@dimen/dp_10"
             android:background="@color/colorLineDivider"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtTitleStartDate" />
+            app:layout_constraintTop_toBottomOf="@+id/txtStartDate" />
 
         <TextView
             android:id="@+id/txtTitleEndDate"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_10"
             android:text="@string/label_end_date"
+            app:layout_constraintEnd_toStartOf="@id/txtEndDate"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider3" />
 
         <TextView
             android:id="@+id/txtEndDate"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textAlignment="textEnd"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/txtTitleEndDate"
             app:layout_constraintTop_toTopOf="@+id/txtTitleEndDate" />
 
         <View
@@ -132,21 +141,23 @@
             android:layout_marginTop="@dimen/dp_10"
             android:background="@color/colorLineDivider"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtTitleEndDate" />
+            app:layout_constraintTop_toBottomOf="@+id/txtEndDate" />
 
         <TextView
             android:id="@+id/txtTitlePickupLocation"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_10"
             android:text="@string/label_pickup_location"
+            app:layout_constraintEnd_toStartOf="@id/txtPickupLcation"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider4" />
 
         <TextView
             android:id="@+id/txtPickupLcation"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textAlignment="textEnd"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1"
             app:layout_constraintStart_toEndOf="@+id/txtTitlePickupLocation"
@@ -159,21 +170,23 @@
             android:layout_marginTop="@dimen/dp_10"
             android:background="@color/colorLineDivider"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtTitlePickupLocation" />
+            app:layout_constraintTop_toBottomOf="@+id/txtPickupLcation" />
 
         <TextView
             android:id="@+id/txtTitleDropLocation"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_10"
             android:text="@string/label_drop_location"
+            app:layout_constraintEnd_toStartOf="@id/txtDropLocation"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider5" />
 
         <TextView
             android:id="@+id/txtDropLocation"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textAlignment="textEnd"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1"
             app:layout_constraintStart_toEndOf="@+id/txtTitleDropLocation"
@@ -186,22 +199,25 @@
             android:layout_marginTop="@dimen/dp_10"
             android:background="@color/colorLineDivider"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtTitleDropLocation" />
+            app:layout_constraintTop_toBottomOf="@+id/txtDropLocation" />
 
         <TextView
             android:id="@+id/txtTitleVehicleNo"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_10"
             android:text="@string/label_vehicle_number"
+            app:layout_constraintEnd_toStartOf="@id/txtVehicleNo"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider6" />
 
         <TextView
             android:id="@+id/txtVehicleNo"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textAlignment="textEnd"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/txtTitleVehicleNo"
             app:layout_constraintTop_toTopOf="@+id/txtTitleVehicleNo" />
 
         <View
@@ -211,22 +227,25 @@
             android:layout_marginTop="@dimen/dp_10"
             android:background="@color/colorLineDivider"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtTitleVehicleNo" />
+            app:layout_constraintTop_toBottomOf="@+id/txtVehicleNo" />
 
         <TextView
             android:id="@+id/txtTitleStatus"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_10"
             android:text="@string/label_status"
+            app:layout_constraintEnd_toStartOf="@id/txtStatus"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider7" />
 
         <TextView
             android:id="@+id/txtStatus"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textAlignment="textEnd"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/txtTitleStartDate"
             app:layout_constraintTop_toTopOf="@+id/txtTitleStatus" />
 
         <Button
@@ -242,7 +261,7 @@
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtTitleStatus" />
+            app:layout_constraintTop_toBottomOf="@+id/txtStatus" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

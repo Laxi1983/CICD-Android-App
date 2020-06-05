@@ -7,5 +7,48 @@
     android:layout_height="match_parent"
     tools:context=".activity.booking.MyBookingsActivity">
 
-    <include layout="@layout/content_my_bookings"/>
+    <io.github.rokarpov.backdrop.BackdropBackLayer
+        android:id="@+id/rootLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:layout_childType="header"
+            app:titleTextColor="@color/color_fiord" />
+
+        <com.undp.fleettracker.activity.booking.customviews.BookingFilterView
+            android:id="@+id/nav_filter_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_anchor="@+id/rootLayout"
+            app:layout_anchorGravity="center"
+            app:layout_childType="content"
+            app:layout_hideHeaderOnReveal="false"
+            app:layout_minRevealedFrontViewHeight="@dimen/subheader_height" />
+
+    </io.github.rokarpov.backdrop.BackdropBackLayer>
+
+    <io.github.rokarpov.backdrop.BackdropFrontLayer
+        android:id="@+id/main_front_layer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/app_bg_color"
+        app:layout_behavior="@string/backdrop_front_layer_behavior">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="50dp"
+            app:layout_childType="header">
+
+            <include layout="@layout/content_my_bookings" />
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </io.github.rokarpov.backdrop.BackdropFrontLayer>
+
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

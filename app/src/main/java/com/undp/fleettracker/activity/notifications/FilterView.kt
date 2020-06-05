@@ -152,7 +152,6 @@ class FilterView : RelativeLayout, View.OnClickListener {
                             for (fleetModel in fleetList) {
                                 if (data === fleetModel.FleetName) {
                                     fleetId = fleetModel.FleetId
-                                    //                                getVehicleListForFleet(fleetId, tenantId)
                                     vehicleManager.getVehicleListForFleet(fleetId, TENANT_ID)
                                     break
                                 }

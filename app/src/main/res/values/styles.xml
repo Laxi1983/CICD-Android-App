@@ -2,11 +2,13 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme"
-        parent="Theme.AppCompat.Light.DarkActionBar">
+        parent="Theme.AppCompat.Light">
         <!-- Customize your theme here. -->
+
         <item name="android:windowLightStatusBar"
             tools:targetApi="m">true
         </item>
+        <item name="actionBarStyle">@style/MyActionBar</item>
         <!-- Support library compatibility -->
         <item name="android:windowFullscreen">false</item>
         <item name="android:windowActionBar">false</item>
@@ -17,7 +19,15 @@
         <item name="colorPrimaryDark">@color/white</item>
         <item name="colorAccent">@color/white</item>
         <item name="android:windowBackground">@drawable/launch_drawable</item>
+
     </style>
+
+    <!--    &lt;!&ndash; ActionBar styles &ndash;&gt;-->
+    <!--    <style name="WhiteActionBar"-->
+    <!--        parent="@android:style/Widget.Holo.Light.ActionBar">-->
+    <!--        <item name="android:background">@android:color/white</item>-->
+    <!--&lt;!&ndash;        <item name="android:titleTextColor">@android:color/black</item>&ndash;&gt;-->
+    <!--    </style>-->
 
 
     <style name="CustomTextView">
@@ -57,6 +67,7 @@
         <item name="strokeColor">@color/color_fiord</item>
     </style>
 
+
     <style name="AppActionBarTheme"
         parent="@android:style/Theme.Holo.Light">
         <item name="android:actionBarStyle">@style/myTheme.ActionBar</item>
@@ -71,6 +82,18 @@
     <style name="myTheme.ActionBar.Text"
         parent="@android:style/TextAppearance">
         <item name="android:textColor">@color/color_fiord</item>
+    </style>
+
+    <style name="MyActionBar"
+        parent="@style/Widget.AppCompat.ActionBar.Solid">
+        <item name="titleTextStyle">@style/MyTitleTextStyle</item>
+    </style>
+
+    <style name="MyTitleTextStyle"
+        parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:background">@android:color/white</item>
+        <item name="android:textColor">@android:color/black</item>
+
     </style>
 
 </resources>

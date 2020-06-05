@@ -11,6 +11,7 @@
         android:id="@+id/cardViewApprovedRides"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_20"
         app:cardBackgroundColor="@color/colorApprovedRidesCard"
         app:cardCornerRadius="@dimen/dp_5"
         app:cardUseCompatPadding="true"
@@ -64,7 +65,7 @@
         app:cardUseCompatPadding="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/cardViewApprovedRides"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="@+id/cardViewApprovedRides">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
@@ -107,6 +108,7 @@
         android:id="@+id/cardViewCancelledRides"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
         app:cardBackgroundColor="@color/colorCancelledRidesCard"
         app:cardCornerRadius="@dimen/dp_5"
         app:cardUseCompatPadding="true"

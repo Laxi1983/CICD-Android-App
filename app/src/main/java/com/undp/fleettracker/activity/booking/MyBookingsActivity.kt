@@ -5,25 +5,28 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.undp.fleettracker.R
 import com.undp.fleettracker.activity.base.BaseActivity
+import com.undp.fleettracker.activity.booking.customviews.BookingFilterView
+import com.undp.fleettracker.activity.booking.customviews.BookingFilterView.OnChangeListeners
 import com.undp.fleettracker.adapter.MyBookingsAdapter
 import com.undp.fleettracker.business.BookingsManager
 import com.undp.fleettracker.business.FleetManager
 import com.undp.fleettracker.callbacks.HttpResponseCallback
 import com.undp.fleettracker.callbacks.MyBookingItemClickListener
-import com.undp.fleettracker.constants.EXTRA_MY_BOOKING_DETAILS
-import com.undp.fleettracker.constants.HttpRequests
-import com.undp.fleettracker.constants.RequestStatus
-import com.undp.fleettracker.constants.TENANT_ID
+import com.undp.fleettracker.constants.*
 import com.undp.fleettracker.models.booking.GetBookingRequestModel
 import com.undp.fleettracker.models.booking.GetBookingsDetails
 import com.undp.fleettracker.models.booking.GetBookingsResponseModel
 import com.undp.fleettracker.models.fleet.FleetDetailModel
 import com.undp.fleettracker.models.fleet.FleetModel
 import com.undp.fleettracker.util.AppUtil
+import io.github.rokarpov.backdrop.BackdropController
+import kotlinx.android.synthetic.main.activity_my_bookings.*
 import kotlinx.android.synthetic.main.content_my_bookings.*
 import retrofit2.Response
 
@@ -31,20 +34,86 @@ class MyBookingsActivity : BaseActivity(),
     HttpResponseCallback, MyBookingItemClickListener {
     private val TAG: String = MyBookingsActivity::class.java.simpleName
 
+    private lateinit var backdropController: BackdropController
+    private lateinit var bookingFilterView: BookingFilterView
+
     private var searchText = ""
-    private var mFleetList: ArrayList<FleetModel>? = null
     private var mBookingDetailsList: MutableList<GetBookingsDetails> =
         ArrayList<GetBookingsDetails>()
     private var mMyBookingsAdapter: MyBookingsAdapter? = null
     private var mBookingResponseList: MutableList<GetBookingsDetails> = ArrayList()
+    private var getBookingRequest: GetBookingRequestModel = GetBookingRequestModel()
     //private var recyclerViewMyBookings: RecyclerView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_bookings)
         initBaseActivityViews()
+        initBackdropController()
         initViews()
-        getTenantFleetList()
+//        getTenantFleetList()
+    }
+
+    private fun initBackdropController() {
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        toolbar.title = "My Booking"
+        toolbar.inflateMenu(R.menu.menu_navigation)
+        bookingFilterView = findViewById(R.id.nav_filter_view)
+
+        backdropController = BackdropController.build(rootLayout, applicationContext) {
+            supportToolbar = toolbar
+            menuItemRevealSettings(R.id.menu_nav_filter, bookingFilterView)
+            interactionSettings(bookingFilterView) {
+                hideHeader = true
+                animationProvider = BookingFilterView.AnimatorProvider
+            }
+            concealedTitleId = R.string.lbl_my_bookings
+            concealedNavigationIconId = R.drawable.ic_back
+            revealedNavigationIconId = R.drawable.ic_back
+        }
+
+
+        bookingFilterView.onCloseListener = object : BookingFilterView.OnCloseListener {
+            override fun onClose() {
+                backdropController.conceal()
+            }
+        }
+
+        bookingFilterView.onChangeListeners = object : OnChangeListeners {
+            override fun fleetChange(fleetID: Int) {
+                generateGetBookingRequestModel()
+                getBookingRequest.fleetId = fleetID
+                sendGetBookingRequest()
+            }
+
+            override fun serviceChange(service: String) {
+                getBookingRequest.bookingType = service
+                sendGetBookingRequest()
+            }
+
+            override fun bookingStatusChange(status: String) {
+                getBookingRequest.approvalStatus = status
+                sendGetBookingRequest()
+            }
+        }
+    }
+
+    private fun generateGetBookingRequestModel() {
+        getBookingRequest = GetBookingRequestModel()
+        getBookingRequest.tenantId = TENANT_ID
+        getBookingRequest.sortColumnName = "StartTime"
+        getBookingRequest.sortType = "desc"
+        getBookingRequest.pageNo = 1
+        getBookingRequest.pageSize = 10
+    }
+
+    fun sendGetBookingRequest() {
+        AppUtil.showProgress(this)
+        BookingsManager.instance.getUserBookings(
+            HttpRequests.GET_USER_BOOKINGS,
+            getBookingRequest,
+            this
+        )
     }
 
     private fun initViews() {
@@ -71,6 +140,16 @@ class MyBookingsActivity : BaseActivity(),
         })
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
+    }
+
     override fun getBottomNavigationMenuItemId(): Int {
         return R.id.action_booking
     }
@@ -85,7 +164,7 @@ class MyBookingsActivity : BaseActivity(),
     }
 
     private fun sendGetMyBookingsRequest(fleetModel: FleetModel?) {
-        var getBookingRequest: GetBookingRequestModel = GetBookingRequestModel()
+        val getBookingRequest: GetBookingRequestModel = GetBookingRequestModel()
         getBookingRequest.fleetId = fleetModel?.FleetId
         getBookingRequest.tenantId = TENANT_ID
         getBookingRequest.sortColumnName = "StartTime"
@@ -132,10 +211,14 @@ class MyBookingsActivity : BaseActivity(),
                             refreshRecyclerView()
                             Log.d(TAG, "Booking details counr:${mBookingDetailsList.size}")
                         } else {
+                            mBookingResponseList.clear()
+                            mBookingDetailsList.clear()
                             refreshRecyclerView()
                         }
                     }
                 } else {
+                    mBookingResponseList.clear()
+                    mBookingDetailsList.clear()
                     refreshRecyclerView()
                 }
             }
@@ -155,9 +238,9 @@ class MyBookingsActivity : BaseActivity(),
                             Log.d(TAG, "getTenantFleetList null")
                             AppUtil.hideProgress()
                         } else {
-                            mFleetList = fleetDetailsModel.data
-                            Log.d(TAG, "getTenantFleetList size: ${mFleetList?.size}")
-                            sendGetMyBookingsRequest(mFleetList?.get(2))
+                            fleetList = fleetDetailsModel.data
+                            Log.d(TAG, "getTenantFleetList size: ${fleetList!!.size}")
+//                            sendGetMyBookingsRequest(fleetList?.get(0))
                         }
                     }
                 } else {
@@ -212,5 +295,13 @@ class MyBookingsActivity : BaseActivity(),
         startActivity(intent)
     }
 
+    override fun onPostCreate(savedInstanceState: Bundle?) {
+        super.onPostCreate(savedInstanceState)
+        backdropController.syncState()
+    }
+
+    override fun onBackPressed() {
+        backdropController.conceal()
+    }
 
 }

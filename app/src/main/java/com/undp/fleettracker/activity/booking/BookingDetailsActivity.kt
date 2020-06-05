@@ -40,6 +40,7 @@ class BookingDetailsActivity : AppCompatActivity(), OnMapReadyCallback, HttpResp
         setDataFromIntent()
         supportActionBar?.setDisplayHomeAsUpEnabled(true);
         supportActionBar?.title = "Booking Details"
+
         var mapFragment =
             supportFragmentManager.findFragmentById(R.id.mapView) as SupportMapFragment
 

@@ -12,7 +12,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
-        versionName "1.8"
+        versionName "1.9"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -112,4 +112,7 @@ dependencies {
     // Reactive Streams (convert Observable to LiveData)
 
     implementation "android.arch.lifecycle:reactivestreams:$reactivestreams_version"
+
+    implementation "com.microsoft.appcenter:appcenter-analytics:$appCenterSdkVersion"
+    implementation "com.microsoft.appcenter:appcenter-crashes:$appCenterSdkVersion"
 }
